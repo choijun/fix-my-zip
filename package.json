@@ -1,0 +1,30 @@
+{
+  "name": "fix-my-zip",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.3",
+    "path": "^0.12.7",
+    "pg": "^7.4.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "sequelize": "^4.37.6",
+    "volleyball": "^1.4.1",
+    "webpack": "^3.5.5",
+    "webpack-cli": "^2.0.14"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start:dev": "webpack -w & nodemon main.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
