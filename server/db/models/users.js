@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 import db from '../index';
+import Repair from './repairs';
 
-export default db.define('users', {
+const User = db.define('users', {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -14,7 +15,21 @@ export default db.define('users', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      len: [8, 20]
+      len: [2, 20]
+    },
+  },
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+    },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    validate: {
+      len:[10,11]
     }
   }
 })
+
+
+module.exports = { User }

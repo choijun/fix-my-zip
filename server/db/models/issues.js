@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../index');
 
 
-export default db.define('repairs', {
+export default db.define('issue', {
   imageid: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -25,8 +25,10 @@ export default db.define('repairs', {
   longitude: {
     type: Sequelize.FLOAT,
     allowNull: false,
-    validate: {min: -180, max: 180},
-    fixed: Sequelize.BOOLEAN,
+    validate: {min: -180, max: 180}
+  },
+  fixed: {
+    type: Sequelize.BOOLEAN,
     defaultValue: false,
   }
 })
