@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-import db from '../index';
-import Repair from './repairs';
+const db = require('../index');
+const Issue = require('./issues');
 
 const User = db.define('users', {
   email: {
@@ -8,6 +8,14 @@ const User = db.define('users', {
     allowNull: false,
     validate: {
       isEmail: true
+    }
+  },
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    // defaultValue: this.email.slice(0,5) + Math.ceil(Math.random() * 99),
+    validate: {
+      notEmpty: true
     }
   },
   password: {

@@ -1,9 +1,9 @@
 const db = require('./server/db');
-const User = require('./server/db/models/users');
+const {User } = require('./server/db/models/users');
 const Issue = require('./server/db/models/issues');
 const faker = require('faker');
 const issues = ['traffic-light', 'streetlight', 'pothole']
-const fixed = [true, false, false, false]
+const fixedOptions = [true, false, false, false]
 
 const generateIssue = () => {
   let imageid = Math.random() * 400 + '.jpeg';
@@ -11,7 +11,7 @@ const generateIssue = () => {
   let issue = issues[Math.floor(Math.random() * issues.length)];
   let latitude = 41.8 + Math.random() / 100;
   let longitude = -87.64 + Math.random() / 100;
-  let fixed = fixed[math.floor(Math.random() * fixed.length)];
+  let fixed = fixedOptions[Math.floor(Math.random() * fixedOptions.length)];
   return ({
     imageid: imageid,
     email: email,
@@ -26,24 +26,46 @@ User.hasMany(Issue);
 Issue.belongsTo(User);
 
 let createThirty = () => {
-  let studentArr = [];
-  for (var i = 0; i < 20; i++) {
-    studentArr.push(generateIssue())
+  let issueArr = [];
+  for (var i = 0; i < 30; i++) {
+    issueArr.push(generateIssue())
   }
-  return studentArr;
+  return issueArr;
 }
-let studentList = createTwenty();
+let issueList = createThirty();
 
-const campusList = [
-  {name: 'Mars Campus',
-  imageUrl: 'https://mars.nasa.gov/system/resources/detail_files/6453_mars-globe-valles-marineris-enhanced-full2.jpg',
-  description: faker.lorem.paragraph()},
-  {name: 'Moon Campus',
-  imageUrl: 'https://mars.nasa.gov/system/resources/detail_files/6453_mars-globe-valles-marineris-enhanced-full2.jpg',
-  description: faker.lorem.paragraph()},
-  {name: 'Pluto Campus',
-  imageUrl: 'https://mars.nasa.gov/system/resources/detail_files/6453_mars-globe-valles-marineris-enhanced-full2.jpg',
-  description: faker.lorem.paragraph()}
+const userList = [
+  {
+    username: 'nick',
+    email: 'nick@nick.nick',
+    password: 'nick',
+    admin: true,
+    phone: '1234567890'
+  },
+  {
+    username: 'brad',
+    email: faker.internet.email(),
+    password: '123',
+  },
+  {
+    username: 'hector',
+    email: faker.internet.email(),
+    password: 'and',
+    phone: '2125557890'
+  },
+  {
+    username: 'emily',
+    email: faker.internet.email(),
+    password: 'zeke',
+    phone: '2024444444'
+  },
+  {
+    username: 'janice',
+    email: faker.internet.email(),
+    password: 'jan1',
+    admin: true,
+    phone: '7732123586'
+  },
 ]
 
 async function seed(){
@@ -52,15 +74,16 @@ async function seed(){
     await db.sync({force: true})
 
     //CAMPUSES
-    const campusPromises = campusList.map(campus => Campus.create(campus))
-    const [mars, moon, pluto] = await Promise.all(campusPromises);
+    const userPromises = userList.map(user => User.create(user))
+    const [ nick, brad, emily, janice ] = await Promise.all(userPromises);
     //STUDENTS
 
-    const studentPromises = studentList.map(student => Student.create(student))
-    const studentArray = await Promise.all(studentPromises);
-    await studentArray.slice(0, 10).map(student => student.setCampus(mars))
-    await studentArray.slice(10, 14).map(student => student.setCampus(moon))
-    studentArray.slice(14).map(student => student.setCampus(pluto))
+    const issuePromises = issueList.map(issue => Issue.create(issue))
+    const issueArray = await Promise.all(issuePromises);
+    await issueArray.slice(0, 9).map(issue => issue.setUser(emily))
+    await issueArray.slice(9,18).map(issue => issue.setUser(emily))
+    await issueArray.slice(18, 26).map(issue => issue.setUser(janice))
+    await issueArray.slice(26).map(issue => issue.setUser(nick))
     console.log('all done');
   }
   catch (err) {
@@ -70,3 +93,4 @@ async function seed(){
 }
 
 seed();
+

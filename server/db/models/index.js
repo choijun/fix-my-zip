@@ -1,8 +1,8 @@
 'use strict';
 
 const db = require('../index');
-const Issue = require('./repairs');
-import { User } from './users';
+const Issue = require('./issues');
+const { User } = require('./users');
 
 // Require all the models
 	// Running each model (i.e. table) module (i.e. file) registers each model into our sequelize db
@@ -16,7 +16,7 @@ Issue.belongsTo(User);
 
 module.exports = {
 	db,
-	Users,
+	User,
   Issue
 };
 

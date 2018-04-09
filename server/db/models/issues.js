@@ -2,12 +2,8 @@ const Sequelize = require('sequelize');
 const db = require('../index');
 
 
-export default db.define('issue', {
+module.exports = db.define('issue', {
   imageid: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  user: {
     type: Sequelize.STRING,
     allowNull: false,
   },
