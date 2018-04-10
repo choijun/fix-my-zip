@@ -28,7 +28,7 @@ class Map extends Component {
       <div
       id="map-component"
       ref={el => this.mapContainer = el}>
-      <h2 id="map-header">Map of Issues</h2>
+      <h2 className="map-header">Map of Issues</h2>
       </div>
     )
   }

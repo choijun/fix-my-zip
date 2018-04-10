@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p> Here is the starting point</p>
+        <p> This will be the Navbar</p>
         <Console />
         <h1>Hello there</h1>
       </div>
