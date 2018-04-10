@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { User, Issue } = require('../db/models');
-console.log(User)
 
 router.get('/', (req, res, next) => {
   Issue.findAll()

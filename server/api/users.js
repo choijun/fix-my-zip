@@ -18,7 +18,22 @@ router.get('/:id', (req, res, next) => {
   .catch(next);
 })
 
+router.post('/', (req, res, next) => {
+  User.create(req.body)
+  .then(newUser => {
+    res.status(201).json(newUser)
+  })
+  .catch(next)
+})
 
+router.put('/:id', (req, res, next) => {
+  User.findById(req.params.id)
+  .then(user => {
+    user.update(req.body)
+  })
+  .then(updatedUser => res.json(updatedUser))
+  .catch(next)
+})
 
 module.exports = router;
 
