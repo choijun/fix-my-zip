@@ -2303,7 +2303,7 @@ var fetchIssue = exports.fetchIssue = function fetchIssue(id) {
 };
 
 var addIssue = exports.addIssue = function addIssue(newIssue) {
-  return thunk = function thunk(dispatch) {
+  return function thunk(dispatch) {
     return _axios2.default.post('/api/issues', newIssue).then(function (issue) {
       return dispatch(createIssue(newIssue));
     }).catch(function (err) {
@@ -2313,7 +2313,7 @@ var addIssue = exports.addIssue = function addIssue(newIssue) {
 };
 
 var editIssue = exports.editIssue = function editIssue(id, changes) {
-  return thunk = function thunk(dispatch) {
+  return function thunk(dispatch) {
     return _axios2.default.put('/api/issues/' + id, changes).then(function (updatedIssue) {
       return dispatch(updateIssue(changes));
     }).catch(function (err) {
@@ -2660,8 +2660,8 @@ var EDIT_USER = 'EDIT_USER';
 var getUser = exports.getUser = function getUser(user) {
   return { type: GET_USER, user: user };
 };
-var getUsers = exports.getUsers = function getUsers(user) {
-  return { type: GET_USERS, user: user };
+var getUsers = exports.getUsers = function getUsers(users) {
+  return { type: GET_USERS, users: users };
 };
 var createUser = exports.createUser = function createUser(user) {
   return { type: ADD_USER, user: user };
@@ -2684,7 +2684,7 @@ var fetchUsers = exports.fetchUsers = function fetchUsers() {
 };
 
 var fetchUser = exports.fetchUser = function fetchUser(id) {
-  return thunk = function thunk(dispatch) {
+  return function thunk(dispatch) {
     return _axios2.default.get('/api/users/' + id).then(function (res) {
       return res.data;
     }).then(function (user) {
@@ -2696,7 +2696,7 @@ var fetchUser = exports.fetchUser = function fetchUser(id) {
 };
 
 var addUser = exports.addUser = function addUser(newUser) {
-  return thunk = function thunk(dispatch) {
+  return function thunk(dispatch) {
     return _axios2.default.post('/api/users', newUser).then(function (user) {
       return dispatch(createUser(newUser));
     }).catch(function (err) {
@@ -2706,7 +2706,7 @@ var addUser = exports.addUser = function addUser(newUser) {
 };
 
 var editUser = exports.editUser = function editUser(id, changes) {
-  return thunk = function thunk(dispatch) {
+  return function thunk(dispatch) {
     return _axios2.default.put('/api/users/' + id, changes).then(function (updatedUser) {
       return dispatch(updateUser(changes));
     }).catch(function (err) {

@@ -8,7 +8,7 @@ const EDIT_USER = 'EDIT_USER';
 
 // ACTION CREATORS
 export const getUser = (user) => ({type: GET_USER, user});
-export const getUsers = (user) => ({type: GET_USERS, user});
+export const getUsers = (users) => ({type: GET_USERS, users});
 export const createUser = (user) => ({type: ADD_USER, user});
 export const updateUser = (user) => ({type: EDIT_USER, user});
 
