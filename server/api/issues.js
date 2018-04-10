@@ -17,5 +17,22 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
+router.post('/', (req, res, next) => {
+  Issue.create(req.body)
+  .then(newIssue => {
+    res.status(201).json(newIssue)
+  })
+  .catch(next)
+})
+
+router.put('/:id', (req, res, next) => {
+  Issue.findById(req.params.id)
+  .then(issue => {
+    issue.update(req.body)
+  })
+  .then(updated => res.json(updated))
+  .catch(next)
+})
+
 module.exports = router;
 
