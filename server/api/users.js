@@ -3,7 +3,9 @@ const router = express.Router();
 const { User, Issue } = require('../db/models');
 
 router.get('/', (req, res, next) => {
-  User.findAll()
+  User.findAll({
+    include: Issue
+  })
   .then(users => {
     res.json(users);
   })
@@ -11,7 +13,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  User.findById(req.params.id)
+  User.findById(req.params.id,{
+    include: Issue
+  })
   .then(user => {
     res.json(user);
   })

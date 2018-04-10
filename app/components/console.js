@@ -24,7 +24,7 @@ class Console extends Component {
         </div>
         <div id="console-bottom-row">
           <BarGraph />
-          <TopList />
+          <TopList users={this.props.users} />
         </div>
       </div>
     )

@@ -22080,7 +22080,7 @@ var Console = function (_Component) {
           'div',
           { id: 'console-bottom-row' },
           _react2.default.createElement(_bargraph2.default, null),
-          _react2.default.createElement(_topusers2.default, null)
+          _react2.default.createElement(_topusers2.default, { users: this.props.users })
         )
       );
     }
