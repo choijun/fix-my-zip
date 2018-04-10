@@ -14,7 +14,7 @@ export const updateUser = (user) => ({type: EDIT_USER, user});
 
 // THUNK CREATORS
 export const fetchUsers = () => {
-  return thunk = (dispatch) => {
+  return function thunk(dispatch) {
     return axios.get('/api/users')
     .then(res => res.data)
     .then(users => dispatch(getUsers(users)))
@@ -23,7 +23,7 @@ export const fetchUsers = () => {
 }
 
 export const fetchUser = (id) => {
-  return thunk = (dispatch) => {
+  return function thunk(dispatch) {
     return axios.get(`/api/users/${id}`)
     .then(res => res.data)
     .then(user => dispatch(getUser(user)))
@@ -32,16 +32,16 @@ export const fetchUser = (id) => {
 }
 
 export const addUser = (newUser) => {
-  return thunk = (dispatch) => {
-    return axios.post('/users', newUser)
+  return function thunk(dispatch) {
+    return axios.post('/api/users', newUser)
     .then(user => dispatch(createUser(newUser)))
     .catch(err => console.error(err));
   }
 }
 
 export const editUser = (id, changes) => {
-  return thunk = (dispatch) => {
-    return axios.put(`/users/${id}`, changes)
+  return function thunk(dispatch) {
+    return axios.put(`/api/users/${id}`, changes)
     .then(updatedUser => dispatch(updateUser(changes)))
     .catch(err => console.error(err));
   }

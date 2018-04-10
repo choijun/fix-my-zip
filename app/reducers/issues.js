@@ -14,7 +14,8 @@ export const updateIssue = (issue) => ({type: EDIT_ISSUE, issue});
 
 // THUNK CREATORS
 export const fetchIssues = () => {
-  return thunk = (dispatch) => {
+  return function thunk(dispatch) {
+    console.log('getting issues')
     return axios.get('/api/issues')
     .then(res => res.data)
     .then(issues => dispatch(getIssues(issues)))
@@ -23,7 +24,7 @@ export const fetchIssues = () => {
 }
 
 export const fetchIssue = (id) => {
-  return thunk = (dispatch) => {
+  return function thunk(dispatch){
     return axios.get(`/api/issues/${id}`)
     .then(res => res.data)
     .then(issue => dispatch(getIssue(issue)))
@@ -32,16 +33,16 @@ export const fetchIssue = (id) => {
 }
 
 export const addIssue = (newIssue) => {
-  return thunk = (dispatch) => {
-    return axios.post('/issues', newIssue)
+  return function thunk(dispatch) {
+    return axios.post('/api/issues', newIssue)
     .then(issue => dispatch(createIssue(newIssue)))
     .catch(err => console.error(err));
   }
 }
 
 export const editIssue = (id, changes) => {
-  return thunk = (dispatch) => {
-    return axios.put(`/issues/${id}`, changes)
+  return function thunk(dispatch) {
+    return axios.put(`/api/issues/${id}`, changes)
     .then(updatedIssue => dispatch(updateIssue(changes)))
     .catch(err => console.error(err));
   }
