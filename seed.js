@@ -6,7 +6,7 @@ const issues = ['traffic-light', 'streetlight', 'pothole']
 const fixedOptions = [true, false, false, false]
 
 const generateIssue = () => {
-  let imageid = Math.random() * 400 + '.jpeg';
+  let imageid = Math.ceil(Math.random() * 400) + '.jpg';
   let email = faker.internet.email();
   let issue = issues[Math.floor(Math.random() * issues.length)];
   let latitude = 41.8 + Math.random() / 100;
