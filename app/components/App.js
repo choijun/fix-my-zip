@@ -9,7 +9,6 @@ class App extends Component {
       <div className="App">
         <p> This will be the Navbar</p>
         <Console />
-        <h1>Hello there</h1>
       </div>
     );
   }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Map from './map';
-import PieChart from './pie';
+import PieChart from './piechart';
+import BarGraph from './bargraph';
+import TopList from './topusers';
 
 class Console extends Component {
 
@@ -14,7 +16,8 @@ class Console extends Component {
           <PieChart />
         </div>
         <div id="console-bottom-row">
-
+          <BarGraph />
+          <TopList />
         </div>
       </div>
     )
