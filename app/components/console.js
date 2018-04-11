@@ -9,6 +9,12 @@ import BarGraph from './bargraph';
 import TopUserList from './topuserlist';
 
 class Console extends Component {
+  constructor(){
+    super();
+    this.state = {
+      status: 'REQUEST',
+    }
+  }
 
 
   componentDidMount(){
@@ -16,14 +22,15 @@ class Console extends Component {
   }
 
   render() {
+    // console.log(this.props)
     return (
-      <div>
+      <div id="main-viewer">
         <div id="console-top-row">
-          <Map />
-          <PieChart />
+          <Map issues={this.props.issues} />
+          <PieChart issues={this.props.issues}/>
         </div>
         <div id="console-bottom-row">
-          <BarGraph />
+          <BarGraph issues={this.props.issues}/>
           <TopUserList users={this.props.users} />
         </div>
       </div>

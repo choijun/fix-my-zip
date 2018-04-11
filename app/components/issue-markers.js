@@ -7,7 +7,9 @@ const markerColors = {
   fixed: 'green'
 }
 
-const buildMarker = (type, coords) => {
+const buildMarker = (issueObj) => {
+  let type = issueObj.type;
+  let coords = [issueObj.longitude, issueObj.latitude];
   const markerEl = document.createElement('div');
   markerEl.style.backgroundColor = markerColors[type];
   markerEl.style.width = '6px';

@@ -3,16 +3,49 @@
   width: 450px;
 }
 
+#pie-chart{
+  height: 450px;
+  width: 450px;
+}
+
 #console-top-row{
   display: flex;
   justify-content: space-around;
+  color: white;
 }
 
 #console-bottom-row{
   display: flex;
   justify-content: space-around;
+  color: white;
 }
 
 .component-header{
   text-align: center;
+  color: white;
+}
+
+#navbar{
+  background-color: #2c2d2d;
+  padding: 10px;
+}
+#navbar a{
+  color: white;
+  padding: 10px;
+  font-family: 'PT Sans';
+}
+
+#navbar a:hover{
+  background-color: #373838;
+}
+
+#main-viewer{
+  background-image: url('http://idolza.com/a/f/h/home-design-pastel-colors-background-building-designers-black-and-white-brick-wall-breakfast-nook-gym_lamp-designers_restaurant-exterior-design-small-bathroom-shower-sofa-moder.jpg');
+  font-family: 'PT Sans';
+}
+
+
+table, th, td {
+  border: 2px solid white;
+  border-collapse: collapse;
 }

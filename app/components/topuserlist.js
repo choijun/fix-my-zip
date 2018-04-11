@@ -12,7 +12,7 @@ class TopUserList extends Component {
       <div>
         <h2 className="component-header">Most Active Users</h2>
         <table id="top-user-table">
-        <thead>
+        <thead className="table-header">
             <tr>
               <th>Username</th>
               <th>Issues Reported</th>
@@ -23,7 +23,7 @@ class TopUserList extends Component {
           <tbody>
             {
               this.props.users.map(user => (
-            <tr key={user.id}>
+            <tr key={user.id} className="table-row">
               <td>{user.username}</td>
               <td>{user.issues.length}</td>
               <td>{user.issues.filter(issue => {return issue.fixed === true}).length}</td>
