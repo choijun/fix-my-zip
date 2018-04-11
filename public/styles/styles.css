@@ -1,15 +1,16 @@
 #map-component{
-  border: black 2px;
   height: 450px;
   width: 450px;
 }
 
 #console-top-row{
   display: flex;
+  justify-content: space-around;
 }
 
 #console-bottom-row{
   display: flex;
+  justify-content: space-around;
 }
 
 .component-header{

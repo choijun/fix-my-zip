@@ -2279,7 +2279,6 @@ var updateIssue = exports.updateIssue = function updateIssue(issue) {
 // THUNK CREATORS
 var fetchIssues = exports.fetchIssues = function fetchIssues() {
   return function thunk(dispatch) {
-    console.log('getting issues');
     return _axios2.default.get('/api/issues').then(function (res) {
       return res.data;
     }).then(function (issues) {
@@ -22038,9 +22037,9 @@ var _bargraph = __webpack_require__(100);
 
 var _bargraph2 = _interopRequireDefault(_bargraph);
 
-var _topusers = __webpack_require__(101);
+var _topuserlist = __webpack_require__(101);
 
-var _topusers2 = _interopRequireDefault(_topusers);
+var _topuserlist2 = _interopRequireDefault(_topuserlist);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22080,7 +22079,7 @@ var Console = function (_Component) {
           'div',
           { id: 'console-bottom-row' },
           _react2.default.createElement(_bargraph2.default, null),
-          _react2.default.createElement(_topusers2.default, { users: this.props.users })
+          _react2.default.createElement(_topuserlist2.default, { users: this.props.users })
         )
       );
     }
@@ -25182,54 +25181,38 @@ var TopUserList = function (_Component) {
           _react2.default.createElement(
             "tbody",
             null,
-            _react2.default.createElement(
-              "tr",
-              null,
-              _react2.default.createElement(
-                "td",
-                null,
-                "janice"
-              ),
-              _react2.default.createElement(
-                "td",
-                null,
-                "15"
-              ),
-              _react2.default.createElement(
-                "td",
-                null,
-                "10"
-              ),
-              _react2.default.createElement(
-                "td",
-                null,
-                "66%"
-              )
-            ),
-            _react2.default.createElement(
-              "tr",
-              null,
-              _react2.default.createElement(
-                "td",
-                null,
-                "brad"
-              ),
-              _react2.default.createElement(
-                "td",
-                null,
-                "5"
-              ),
-              _react2.default.createElement(
-                "td",
-                null,
-                "2"
-              ),
-              _react2.default.createElement(
-                "td",
-                null,
-                "40%"
-              )
-            )
+            this.props.users.map(function (user) {
+              return _react2.default.createElement(
+                "tr",
+                { key: user.id },
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  user.username
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  user.issues.length
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  user.issues.filter(function (issue) {
+                    return issue.fixed === true;
+                  }).length
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  isNaN((user.issues.filter(function (issue) {
+                    return issue.fixed === true;
+                  }).length / user.issues.length * 100).toFixed(0)) ? '0%' : (user.issues.filter(function (issue) {
+                    return issue.fixed === true;
+                  }).length / user.issues.length * 100).toFixed(0) + '%'
+                )
+              );
+            })
           )
         )
       );

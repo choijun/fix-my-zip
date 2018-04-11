@@ -6,7 +6,7 @@ import { fetchUser, fetchUsers } from '../reducers/users';
 import Map from './map';
 import PieChart from './piechart';
 import BarGraph from './bargraph';
-import TopList from './topusers';
+import TopUserList from './topuserlist';
 
 class Console extends Component {
 
@@ -24,7 +24,7 @@ class Console extends Component {
         </div>
         <div id="console-bottom-row">
           <BarGraph />
-          <TopList users={this.props.users} />
+          <TopUserList users={this.props.users} />
         </div>
       </div>
     )

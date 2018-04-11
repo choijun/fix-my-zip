@@ -15,7 +15,6 @@ export const updateIssue = (issue) => ({type: EDIT_ISSUE, issue});
 // THUNK CREATORS
 export const fetchIssues = () => {
   return function thunk(dispatch) {
-    console.log('getting issues')
     return axios.get('/api/issues')
     .then(res => res.data)
     .then(issues => dispatch(getIssues(issues)))
