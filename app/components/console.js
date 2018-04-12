@@ -5,7 +5,7 @@ import { fetchUser, fetchUsers } from '../reducers/users';
 import styled from 'styled-components';
 
 import Map from './map';
-import PieChart from './piechart';
+import PieChartComponent from './piechart';
 import BarGraph from './bargraph';
 import TopUserList from './topuserlist';
 import { Loader } from '../common/Loader';
@@ -44,7 +44,7 @@ class Console extends Component {
       <MainViewer>
         <div id="console-top-row">
           <Map issues={issues} />
-          <PieChart issues={issues} />
+          <PieChartComponent issues={issues} />
         </div>
         <div id="console-bottom-row">
           <BarGraph issues={issues} />

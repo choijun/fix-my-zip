@@ -18,6 +18,8 @@
   display: flex;
   justify-content: space-around;
   color: white;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .component-header{
@@ -46,7 +48,6 @@
 table, th, td {
   border: 2px solid white;
   border-collapse: collapse;
-
 }
 
 td {
