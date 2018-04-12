@@ -2,38 +2,56 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchIssue, fetchIssues, updateIssue } from '../reducers/issues';
 import { fetchUser, fetchUsers } from '../reducers/users';
+import styled from 'styled-components';
 
 import Map from './map';
 import PieChart from './piechart';
 import BarGraph from './bargraph';
 import TopUserList from './topuserlist';
+import { Loader } from '../common/Loader';
+
+const MainViewer = styled.div`
+  background-image: url('http://idolza.com/a/f/h/home-design-pastel-colors-background-building-designers-black-and-white-brick-wall-breakfast-nook-gym_lamp-designers_restaurant-exterior-design-small-bathroom-shower-sofa-moder.jpg');
+  font-family: 'PT Sans';
+`
 
 class Console extends Component {
-  constructor(){
-    super();
-    this.state = {
+
+  state = {
       status: 'REQUEST',
+      message: 'Loading Data...'
     }
-  }
 
 
   componentDidMount(){
-    this.props.fetchInitialData();
+    this.fetchData();
+  }
+
+  fetchData = () => {
+    const { fetchIssues, fetchUsers } = this.props;
+    Promise.all([fetchIssues(), fetchUsers()])
+    .then(() => this.setState({status: 'SUCCESS', message: ''}))
+    .catch(() => this.setState({status: 'ERROR', message: 'THERE WAS AN ERROR'}))
   }
 
   render() {
-    // console.log(this.props)
+    const { issues, users } = this.props;
+    const { status, message } = this.state;
     return (
-      <div id="main-viewer">
+      status !== 'SUCCESS'
+      ? <Loader status={status} message={message}/>
+      : (
+      <MainViewer>
         <div id="console-top-row">
-          <Map issues={this.props.issues} />
-          <PieChart issues={this.props.issues}/>
+          <Map issues={issues} />
+          <PieChart issues={issues} />
         </div>
         <div id="console-bottom-row">
-          <BarGraph issues={this.props.issues}/>
-          <TopUserList users={this.props.users} />
+          <BarGraph issues={issues} />
+          <TopUserList users={users} />
         </div>
-      </div>
+      </MainViewer>
+      )
     )
   }
 }
@@ -45,10 +63,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchInitialData: () => ({
-      fetchIssues: dispatch(fetchIssues()),
-      fetchUsers: dispatch(fetchUsers())
-    })
+      fetchIssues: () => dispatch(fetchIssues()),
+      fetchUsers: () => dispatch(fetchUsers())
   }
 }
 

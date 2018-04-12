@@ -32,16 +32,10 @@
 #navbar a{
   color: white;
   padding: 10px;
-  font-family: 'PT Sans';
 }
 
 #navbar a:hover{
   background-color: #373838;
-}
-
-#main-viewer{
-  background-image: url('http://idolza.com/a/f/h/home-design-pastel-colors-background-building-designers-black-and-white-brick-wall-breakfast-nook-gym_lamp-designers_restaurant-exterior-design-small-bathroom-shower-sofa-moder.jpg');
-  font-family: 'PT Sans';
 }
 
 

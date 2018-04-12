@@ -9,7 +9,7 @@ const generateIssue = () => {
   let imageid = Math.ceil(Math.random() * 400) + '.jpg';
   let email = faker.internet.email();
   let issue = issues[Math.floor(Math.random() * issues.length)];
-  let latitude = 41.8 + Math.random() / 100;
+  let latitude = 41.8 - Math.random() / 100;
   let longitude = -87.64 + Math.random() / 100;
   let fixed = fixedOptions[Math.floor(Math.random() * fixedOptions.length)];
   return ({
