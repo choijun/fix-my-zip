@@ -14,20 +14,20 @@ class TopUserList extends Component {
         <table id="top-user-table">
         <thead className="table-header">
             <tr>
-              <th>Username</th>
-              <th>Issues Reported</th>
-              <th>Issues Completed</th>
-              <th>Percent Completed</th>
+              <th className="first-col">Username</th>
+              <th className="other-cols">Issues<br/>Reported</th>
+              <th className="other-cols">Issues<br/>Completed</th>
+              <th className="other-cols">Percent<br/>Completed</th>
             </tr>
           </thead>
           <tbody>
             {
               this.props.users.map(user => (
             <tr key={user.id} className="table-row">
-              <td>{user.username}</td>
-              <td>{user.issues.length}</td>
-              <td>{user.issues.filter(issue => {return issue.fixed === true}).length}</td>
-              <td>{
+              <td className="first-col">{user.username}</td>
+              <td className="other-cols">{user.issues.length}</td>
+              <td className="other-cols">{user.issues.filter(issue => {return issue.fixed === true}).length}</td>
+              <td className="other-cols">{
                 (isNaN((user.issues.filter(issue => {return issue.fixed === true}).length / user.issues.length * 100).toFixed(0))) ? '0%' : (user.issues.filter(issue => {return issue.fixed === true}).length / user.issues.length * 100).toFixed(0) + '%'
                 }</td>
             </tr>

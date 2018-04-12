@@ -38,8 +38,25 @@
   background-color: #373838;
 }
 
+#top-user-table{
+  border-radius: 25px;
+  background: rgba(200, 200, 200, 0.2);
+}
 
 table, th, td {
   border: 2px solid white;
   border-collapse: collapse;
+
+}
+
+td {
+  width: 120px;
+}
+
+.other-cols{
+  text-align: center;
+}
+
+.first-col{
+  padding-left: 1em;
 }

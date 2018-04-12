@@ -33651,23 +33651,29 @@ var TopUserList = function (_Component) {
               null,
               _react2.default.createElement(
                 "th",
-                null,
+                { className: "first-col" },
                 "Username"
               ),
               _react2.default.createElement(
                 "th",
-                null,
-                "Issues Reported"
+                { className: "other-cols" },
+                "Issues",
+                _react2.default.createElement("br", null),
+                "Reported"
               ),
               _react2.default.createElement(
                 "th",
-                null,
-                "Issues Completed"
+                { className: "other-cols" },
+                "Issues",
+                _react2.default.createElement("br", null),
+                "Completed"
               ),
               _react2.default.createElement(
                 "th",
-                null,
-                "Percent Completed"
+                { className: "other-cols" },
+                "Percent",
+                _react2.default.createElement("br", null),
+                "Completed"
               )
             )
           ),
@@ -33680,24 +33686,24 @@ var TopUserList = function (_Component) {
                 { key: user.id, className: "table-row" },
                 _react2.default.createElement(
                   "td",
-                  null,
+                  { className: "first-col" },
                   user.username
                 ),
                 _react2.default.createElement(
                   "td",
-                  null,
+                  { className: "other-cols" },
                   user.issues.length
                 ),
                 _react2.default.createElement(
                   "td",
-                  null,
+                  { className: "other-cols" },
                   user.issues.filter(function (issue) {
                     return issue.fixed === true;
                   }).length
                 ),
                 _react2.default.createElement(
                   "td",
-                  null,
+                  { className: "other-cols" },
                   isNaN((user.issues.filter(function (issue) {
                     return issue.fixed === true;
                   }).length / user.issues.length * 100).toFixed(0)) ? '0%' : (user.issues.filter(function (issue) {
