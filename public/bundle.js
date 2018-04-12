@@ -33471,15 +33471,14 @@ var _require = __webpack_require__(59),
 var markerColors = {
   'traffic-light': 'red',
   streetlight: 'yellow',
-  pothole: 'blue',
-  fixed: 'green'
+  pothole: 'blue'
 };
 
 var buildMarker = exports.buildMarker = function buildMarker(issueObj) {
   var type = issueObj.issue;
   var coords = [parseFloat(issueObj.longitude.toFixed(5)), parseFloat(issueObj.latitude.toFixed(5))];
   var markerEl = document.createElement('div');
-  markerEl.style.backgroundColor = markerColors[type];
+  if (issueObj.fixed) markerEl.style.backgroundColor = 'green';else markerEl.style.backgroundColor = markerColors[type];
   markerEl.style.width = '6px';
   markerEl.style.height = '6px';
   markerEl.style.borderRadius = '50%';
