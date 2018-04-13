@@ -17,8 +17,8 @@ class PieChartComponent extends Component {
       return total;
     }, {})
     const data = [
-      {title: 'Fixed', value: intermed.true, color: "#3EC005"},
-      {title: 'Not Fixed', value: intermed.false, color: "#D40606"}
+      {title: 'Fixed', value: intermed.true, color: "#91CA78"},
+      {title: 'Not Fixed', value: intermed.false, color: "#D2616A"}
     ]
     console.log(data)
     return (

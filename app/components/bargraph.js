@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-var _ = require('lodash');
+import _ from 'lodash';
 import { ChartArea, StackedBar } from 'viiksetjs';
+import styled from 'styled-components';
 
 
 let data = [
-  {issue: 'pothole', true: 0, false: 0},
-  {issue: 'streetlight', true: 0, false: 0},
-  {issue: 'traffic-light', true: 0, false: 0}
+  {issue: 'pothole', fixed: 0, unfixed: 0},
+  {issue: 'streetlight', fixed: 0, unfixed: 0},
+  {issue: 'traffic-light', fixed: 0, unfixed: 0}
 ]
 
+const isMobile = window.innerWidth <= 500
+
+const ChartWrapper = styled.div`
+  height: ${ isMobile ? '300px' : '500px'};
+`
 
 class BarGraph extends Component {
 
@@ -17,19 +23,22 @@ class BarGraph extends Component {
     let intermed = issues.map(elem => _.pick(elem, ['issue', 'fixed']))
     intermed.forEach(element => {
       if(element.issue === 'pothole'){
-        if(element.fixed) data[0].true ++
-        else data[0].false++;
+        if(element.fixed) data[0].fixed ++
+        else data[0].unfixed++;
       }
       if(element.issue === 'streetlight'){
-        if(element.fixed) data[1].true ++
-        else data[1].false++;
+        if(element.fixed) data[1].fixed ++
+        else data[1].unfixed++;
       }
       if(element.issue === 'traffic-light'){
-        if(element.fixed) data[2].true ++
-        else data[2].false++;
+        if(element.fixed) data[2].fixed ++
+        else data[2].unfixed++;
       }
     })
+    console.log(data);
   }
+
+
 
 
 
@@ -37,23 +46,23 @@ class BarGraph extends Component {
     return (
       <div>
         <h2 className="component-header">Percent Complete by Issue</h2>
-        <img src="https://study.com/cimages/multimages/16/image_stacked_bar_chart_example_two_resized.jpg"/>
-        {/* <ChartArea
-          data={data}
-          type={"linear"}
-          color="grey"
-          xKey='issue'
-          stroke="grey"
-          nogrid
-          yKey='issue'
-          yTickLabelProps={() => ({ dx: '-3rem', fontSize: 10, strokeWidth: '0.5px' })}
-          noYaxis='horizontal'
-         >
-           <StackedBar
-             colors={['#51344D', '#6F5060', '#A78682']}
-             keys={['pothole', 'streetlight', 'traffic-light']}
-           />
-      </ChartArea> */}
+        <ChartWrapper>
+          <ChartArea
+              data={data}
+              type='ordinal'
+              numXTicks={isMobile ? 1: 4}
+              color="grey"
+              xKey="issue"
+              stroke="grey"
+              nogrid
+              yTickLabelProps={() => ({ fontSize: 10, strokeWidth: '0.5px' })}
+            >
+              <StackedBar
+                colors={['#91CA78', '#D2616A']}
+                keys={['fixed', 'unfixed']}
+              />
+            </ChartArea>
+          </ChartWrapper>
       </div>
     )
   }
